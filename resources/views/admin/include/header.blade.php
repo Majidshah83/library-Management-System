@@ -16,13 +16,7 @@
                 <div class="navbar navbar-default" role="navigation">
                     <div class="container">
                         <div class="">
-
-
-
-
-
-
-                            <ul class="nav navbar-nav navbar-right pull-right">
+                         <ul class="nav navbar-nav navbar-right pull-right">
                                 <li class="dropdown top-menu-item-xs">
 
                                     <ul class="dropdown-menu dropdown-menu-lg">

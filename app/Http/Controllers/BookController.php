@@ -21,7 +21,7 @@ class BookController extends Controller
        $book->category=$req->category;
     //    dd($book);
        $book->save();
-       return redirect('/book');
+       return redirect('/book')->with('success','Insert Data Successfuly');
 
     }
 }

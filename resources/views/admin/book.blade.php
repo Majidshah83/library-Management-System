@@ -7,6 +7,13 @@
             <!-- Start content -->
             <div class="content">
                 <div class="container">
+   <!-- session insert successfuly -->
+  @if(session('success'))
+ <div class="alert alert-success">
+  <strong>{{session('success')}}</strong>
+</div>
+ @endif
+
      <!-- Start Modal Add form -->
 <div class="container">
   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form" style=" margin-bottom: 20px; margin-left: 90%;">
@@ -54,10 +61,9 @@
   </div>
 </div>
                     <!-- Page-Title -->
-
-
                     <div class="row">
                         <div class="col-sm-12">
+
                             <div class="card-box table-responsive">
                                 <h4 class="m-t-0 header-title"><b>Default Example</b></h4>
                                 <p class="text-muted font-13 m-b-30">
