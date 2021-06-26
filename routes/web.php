@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['middleware' => ['auth']], function () { 
+Route::group(['middleware' => ['auth']], function () {
 
     Route::get('dashboard','AdminController@index');
     Route::get('logout','AdminController@customLogout');
@@ -29,3 +29,4 @@ Route::post('admin-login','AdminController@customLogin');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/book','BookController@showbook');
