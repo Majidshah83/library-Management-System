@@ -13,6 +13,14 @@ class BookController extends Controller
     }
     //Insert book deatil
     public function addBook(Request $req){
+$req->validate([
+    'title' => 'required',
+    'price' => 'required',
+    'auther'=>'required',
+     'edition'=>'required',
+     'category'=>'required'
+
+]);
        $book=new Book;
        $book->title=$req->title;
        $book->price=$req->price;

@@ -34,23 +34,23 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="Title">Book Title</label>
-            <input type="text" class="form-control" id="text1" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
+            <input type="text" class="form-control" id="text1" name="title" aria-describedby="titleHelp" placeholder="Enter Title" required>
           </div>
           <div class="form-group">
             <label for="pircebook">Book Price</label>
-            <input type="text" class="form-control" id="pircebook"  name="price" placeholder="Enter Price">
+            <input type="text" class="form-control" id="pircebook"  name="price" placeholder="Enter Price" required>
           </div>
          <div class="form-group">
             <label for="auther">Book Auther</label>
-            <input type="text" class="form-control" id="auther"  name="auther" placeholder="Enter Auther Name">
+            <input type="text" class="form-control" id="auther"  name="auther" placeholder="Enter Auther Name" required>
           </div>
           <div class="form-group">
             <label for="bookedition">Book Edition</label>
-            <input type="text" class="form-control" id="bookedition" placeholder="Enter Edition" name="edition" >
+            <input type="text" class="form-control" id="bookedition" placeholder="Enter Edition" name="edition" required>
           </div>
           <div class="form-group">
             <label for="categorybook">Book Category</label>
-            <input type="text" class="form-control" id="categorybook" name="category" placeholder="Enter Category">
+            <input type="text" class="form-control" id="categorybook" name="category" placeholder="Enter Category" required>
           </div>
         </div>
         <div class="modal-footer border-top-0 d-flex justify-content-center">
