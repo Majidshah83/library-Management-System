@@ -7,12 +7,12 @@
             <!-- Start content -->
             <div class="content">
                 <div class="container">
+     <!-- Start Modal Add form -->
 <div class="container">
   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form" style=" margin-bottom: 20px; margin-left: 90%;">
     Add Book
   </button>
 </div>
- <!-- Start Modal Add form -->
 <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -22,27 +22,28 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form>
+      <form action="/add" method="POST">
+      @csrf
         <div class="modal-body">
           <div class="form-group">
             <label for="Title">Book Title</label>
-            <input type="text" class="form-control" id="text1" aria-describedby="titleHelp" placeholder="Enter Title">
+            <input type="text" class="form-control" id="text1" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
           </div>
           <div class="form-group">
             <label for="pircebook">Book Price</label>
-            <input type="text" class="form-control" id="pircebook" placeholder="Enter Price">
+            <input type="text" class="form-control" id="pircebook"  name="price" placeholder="Enter Price">
           </div>
          <div class="form-group">
             <label for="auther">Book Auther</label>
-            <input type="text" class="form-control" id="auther" placeholder="Enter Auther Name">
+            <input type="text" class="form-control" id="auther"  name="auther" placeholder="Enter Auther Name">
           </div>
           <div class="form-group">
             <label for="bookedition">Book Edition</label>
-            <input type="text" class="form-control" id="bookedition" placeholder="Enter Edition">
+            <input type="text" class="form-control" id="bookedition" placeholder="Enter Edition" name="edition" >
           </div>
           <div class="form-group">
             <label for="categorybook">Book Category</label>
-            <input type="text" class="form-control" id="categorybook" placeholder="Enter Category">
+            <input type="text" class="form-control" id="categorybook" name="category" placeholder="Enter Category">
           </div>
         </div>
         <div class="modal-footer border-top-0 d-flex justify-content-center">

@@ -7,20 +7,20 @@
                         	<li class="text-muted menu-title">Navigation</li>
 
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Dashboard </span></a>
-                             
+                                <a href="/dashboard" class="waves-effect"><i class="ti-home"></i> <span> Dashboard </span></a>
+
                             </li>
 
-                           <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Books </span></a>
+                           <li class="books">
+                                <a  href="/book" class="waves-effect"><i class="ti-home"></i> <span> Books </span></a>
                             </li>
 
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Users </span></a>
+                            <li class="users">
+                                <a href="/" class="waves-effect"><i class="ti-home"></i> <span> Users </span></a>
                             </li>
 
-                           <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Book Issue </span></a>
+                           <li class="issuebook">
+                                <a href="/" class="waves-effect"><i class="ti-home"></i> <span> Book Issue </span></a>
                             </li>
 
                         </ul>
