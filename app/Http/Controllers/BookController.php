@@ -29,7 +29,7 @@ $req->validate([
        $book->category=$req->category;
     //    dd($book);
        $book->save();
-       return redirect('/book')->with('success','Insert Data Successfuly');
+       return redirect('/book')->with('success','Book Added Successfuly');
 
     }
 }
