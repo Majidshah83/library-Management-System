@@ -31,3 +31,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/book','BookController@showbook');
 Route::post('/add','BookController@addBook');
+Route::post('/update/{id}','BookController@update');
+Route::get('/delete/{id}','BookController@deleteBook');

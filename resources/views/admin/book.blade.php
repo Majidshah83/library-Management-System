@@ -105,58 +105,65 @@
                                     <td>{{$data->auther}}</td>
                                     <td>{{$data->edition}}</td>
                                     <td>{{$data->category}}</td>
+
+                                    <!-- update modal-->
                                     <td>
-                                        <!-- Update modal -->
                                         <div class="container">
-                                            <button type="button" class="btn btn-primary rounded-pill"
-                                                data-toggle="modal" data-target="#Updateform"
-                                                style="margin-bottom:9px;margin-left:1%;margin-top:4px;">
-                                                Update
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="{{ '#Updateform' . $data->id }}"
+                                                style=" margin-bottom:9px; margin-left:-2px; margin-top:11px; border-radius: 61px;">
+                                                Update Book
                                             </button>
                                         </div>
-                                        <div class="modal fade" id="Updateform" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="{{ 'Updateform' . $data->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header border-bottom-0">
                                                         <p class="modal-title" id="exampleModalLabel"
-                                                            style="font-size: 29px; font-weight: bold;">Update Book</p>
+                                                            style="font-size: 29px; font-weight: bold;">
+                                                            Update Book</p>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="/add" method="POST">
+
+                                                    <form action="/update/{{$data->id}}" method="POST">
                                                         @csrf
                                                         <div class="modal-body">
                                                             <div class="form-group">
                                                                 <label for="Title">Book Title</label>
+                                                                <input type="hidden" value={{$data['id']}} name="id">
                                                                 <input type="text" class="form-control" id="text1"
                                                                     name="title" aria-describedby="titleHelp"
-                                                                    placeholder="Enter Title" required>
-
+                                                                    placeholder="Enter Title" value="{{$data['title']}}"
+                                                                    required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="pircebook">Book Price</label>
                                                                 <input type="text" class="form-control" id="pircebook"
-                                                                    name="price" placeholder="Enter Price" required>
+                                                                    name="price" placeholder="Enter Price"
+                                                                    value="{{$data['price']}}" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="auther">Book Auther</label>
                                                                 <input type="text" class="form-control" id="auther"
                                                                     name="auther" placeholder="Enter Auther Name"
-                                                                    required>
+                                                                    value="{{$data['auther']}}" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="bookedition">Book Edition</label>
                                                                 <input type="text" class="form-control" id="bookedition"
-                                                                    placeholder="Enter Edition" name="edition" required>
+                                                                    placeholder="Enter Edition" name="edition"
+                                                                    value="{{$data['edition']}}" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="categorybook">Book Category</label>
                                                                 <input type="text" class="form-control"
                                                                     id="categorybook" name="category"
-                                                                    placeholder="Enter Category" required>
+                                                                    placeholder="Enter Category"
+                                                                    value="{{$data['category']}}" required>
                                                             </div>
                                                         </div>
                                                         <div
@@ -170,32 +177,36 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <!-- Delete modal -->
+                                        <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#exampleModal">
-                                            Delete
-                                        </button>
+                                            style=" margin-bottom:9px; margin-left:-2px; margin-top:11px; border-radius: 61px;"
+                                            data-target="{{'#deleteModal' .$data->id}}">
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            Delete Book
+                                        </button>
+                                        <!-- Delete  Modal  -->
+                                        <div class="modal fade" id="{{'deleteModal' . $data->id}}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel"
-                                                            style="font-size: 20px; font-weight: bold;">Delete Book</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
+                                                        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 21px;
+                                                            font-weight: bold;">Delete Book</h5>
+                                                        <button type=" button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p style="color:red;">Are you sure you want to delete book?</p>
+                                                        <p>Are you sure you want delete book</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Delete</button>
+                                                        <a class="btn btn-primary"
+                                                            href='delete/{{ $data->id }}'>Delete</a>
+                                                        <!-- <button type="button" class="btn btn-primary">Delete -->
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -207,13 +218,22 @@
 
                             </tbody>
                         </table>
+
+
                     </div>
                 </div>
+
+
             </div>
 
 
         </div>
 
     </div>
+
+
+
+
+
 
     @stop
