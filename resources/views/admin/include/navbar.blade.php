@@ -16,7 +16,7 @@
                     </li>
 
                     <li class="users">
-                        <a href="/" class="waves-effect"><i class="ti-user"></i> <span> Users </span></a>
+                        <a href="/" class="waves-effect"><i class="ti-user"></i> <span> Students </span></a>
                     </li>
 
                     <li class="issuebook">

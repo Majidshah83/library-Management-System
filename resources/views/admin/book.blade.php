@@ -4,23 +4,17 @@
 
 
 <!-- Start content -->
-<div class="content">
+<div class="content-page">
     <div class="container">
         <!-- session insert successfuly -->
-        @if(session('success'))
-        <div class="alert alert-success">
-            <strong>{{session('success')}}</strong>
-        </div>
-        @endif
+
         <!-- Page-Title -->
-        <div class="row">
+        <div class="row mt-8">
             <!-- Start Modal Add form -->
-            <div class="container">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form"
-                    style=" margin-bottom: 20px; margin-left: 90%;">
-                    Add Book
-                </button>
-            </div>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form"
+                style="  margin-left: 90%;margin-top: 26px;margin-bottom: 2%;">
+                Add Book
+            </button>
             <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -32,7 +26,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="/add" method="POST">z
+                        <form action="/add" method="POST">
                             @csrf
                             <div class="modal-body">
                                 <div class="form-group">
@@ -72,13 +66,12 @@
             <div class="col-sm-12">
 
                 <div class="card-box table-responsive">
-                    <h4 class="m-t-0 header-title"><b>Default Example</b></h4>
-                    <p class="text-muted font-13 m-b-30">
-                        DataTables has most features enabled by default, so all you need to do to use it
-                        with
-                        your own tables is to call the construction function: <code>$().DataTable();</code>.
-                    </p>
 
+                    @if(session('success'))
+                    <div class="alert alert-success">
+                        <strong>{{session('success')}}</strong>
+                    </div>
+                    @endif
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                             <tr>

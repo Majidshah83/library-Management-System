@@ -21,10 +21,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard','AdminController@index');
     Route::get('logout','AdminController@customLogout');
 
+
 });
 
 Route::get('admin/login','AdminController@adminLogin');
 Route::post('admin-login','AdminController@customLogin');
+
 
 Auth::routes();
 

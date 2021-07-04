@@ -1,0 +1,23 @@
+
+Warning: PHP Startup: Unable to load dynamic library 'php-bcmath' (tried: C:\xampp\php\ext\php-bcmath (The specified module could not be found.), C:\xampp\php\ext\php_php-bcmath.dll (The specified module could not be found.)) in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'php-intl' (tried: C:\xampp\php\ext\php-intl (The specified module could not be found.), C:\xampp\php\ext\php_php-intl.dll (The specified module could not be found.)) in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'php-sockets' (tried: C:\xampp\php\ext\php-sockets (The specified module could not be found.), C:\xampp\php\ext\php_php-sockets.dll (The specified module could not be found.)) in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'php-curl' (tried: C:\xampp\php\ext\php-curl (The specified module could not be found.), C:\xampp\php\ext\php_php-curl.dll (The specified module could not be found.)) in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'php-mcrypt' (tried: C:\xampp\php\ext\php-mcrypt (The specified module could not be found.), C:\xampp\php\ext\php_php-mcrypt.dll (The specified module could not be found.)) in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'php-intl' (tried: C:\xampp\php\ext\php-intl (The specified module could not be found.), C:\xampp\php\ext\php_php-intl.dll (The specified module could not be found.)) in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'php-gd' (tried: C:\xampp\php\ext\php-gd (The specified module could not be found.), C:\xampp\php\ext\php_php-gd.dll (The specified module could not be found.)) in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'php-bcmath' (tried: C:\xampp\php\ext\php-bcmath (The specified module could not be found.), C:\xampp\php\ext\php_php-bcmath.dll (The specified module could not be found.)) in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'mcrypt' (tried: C:\xampp\php\ext\mcrypt (The specified module could not be found.), C:\xampp\php\ext\php_mcrypt.dll (The specified module could not be found.)) in Unknown on line 0
+
+                                                                              
+  Too many arguments to "make:migration" command, expected arguments "name".  
+                                                                              
+
