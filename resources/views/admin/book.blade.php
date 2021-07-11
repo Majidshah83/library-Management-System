@@ -1,8 +1,6 @@
 @extends('admin.master');
 @section('content');
 <!-- add css -->
-
-
 <!-- Start content -->
 <div class="content-page">
     <div class="container">
@@ -66,6 +64,11 @@
             <div class="col-sm-12">
 
                 <div class="card-box table-responsive">
+                  @if(count($errors)>0)
+              @foreach ($errors->all() as $errors)
+              <p class="alert alert-danger">{{$errors}}</p>
+              @endforeach
+              @endif
 
                     @if(session('success'))
                     <div class="alert alert-success">
