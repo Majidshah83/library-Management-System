@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
  Route::get('logout','AdminController@customLogout');
 Route::get('admin/login','AdminController@adminLogin');
 Route::post('admin-login','AdminController@customLogin');
-Route::get('/student','StudentController@index');
+Route::get('/student','StudentController@show');
 
 Auth::routes();
 
