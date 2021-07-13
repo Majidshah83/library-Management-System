@@ -22,7 +22,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="/add" method="POST">
+                        <form action="/addbook" method="POST">
                             @csrf
                             <div class="modal-body">
                                 <div class="form-group">
@@ -37,28 +37,26 @@
                                         placeholder="Enter RegNo" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="auther">Issue_Date</label>
-                                    <input type="date" class="form-control" id="issue" name="issuedate"
-                                       required>
-                                </div>
-                                 <div class="form-group">
-                                    <label for="auther">Return_Date</label>
-                                    <input type="date" class="form-control" id="return" name="returndate"
-                                       required>
+                                    <label for="date_of_issue">Issue_Date</label>
+                                    <input type="date" id="date_of_issue" name="date_of_issue" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="bookedition">Course</label>
-                                    <input type="text" class="form-control" id="course" placeholder="Enter Course"
-                                        name="studentcourse" required>
+                                    <label for="date_of_return">Return_Date</label>
+                                    <input type="date" class="form-control" id="date_of_return" name="date_of_return" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="course">Course</label>
+                                    <input type="text" class="form-control" id="course" name="course"
+                                        placeholder="Enter course" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="department">Department</label>
-                                    <input type="text" class="form-control" id="department" name="studentdepartment"
-                                        placeholder="Enter Department" required>
+                                    <input type="text" class="form-control" id="department" name="department"
+                                        placeholder="Enter course" required>
                                 </div>
                                 <label for="department">Gender</label> </br>
-                                <input type="radio" name="gender" value="male" id="male" > Male
-                                <input type="radio" name="gender" value="female"id="female"> Female
+                                <input type="radio" name="gender" value="male" id="male"> Male
+                                <input type="radio" name="gender" value="female" id="female"> Female
 
                             </div>
                             <div class="modal-footer border-top-0 d-flex justify-content-center">
@@ -70,11 +68,11 @@
             </div>
             <div class="col-sm-12">
                 <div class="card-box table-responsive">
-                  @if(count($errors)>0)
-              @foreach ($errors->all() as $errors)
-              <p class="alert alert-danger">{{$errors}}</p>
-              @endforeach
-              @endif
+                    @if(count($errors)>0)
+                    @foreach ($errors->all() as $errors)
+                    <p class="alert alert-danger">{{$errors}}</p>
+                    @endforeach
+                    @endif
 
                     @if(session('success'))
                     <div class="alert alert-success">
@@ -88,7 +86,7 @@
                                 <th>Name</th>
                                 <th>RegNo</th>
                                 <th>Issue_Date</th>
-                                 <th>Return_Date</th>
+                                <th>Return_Date</th>
                                 <th>Course</th>
                                 <th>Department</th>
                                 <th>Gender</th>
@@ -105,7 +103,7 @@
                                 <td>{{$data->name}}</td>
                                 <td>{{$data->regno}}</td>
                                 <td>{{$data->date_of_issue}}</td>
-                                 <td>{{$data->date_of_return}}</td>
+                                <td>{{$data->date_of_return}}</td>
                                 <td>{{$data->course}}</td>
                                 <td>{{$data->department}}</td>
                                 <td>{{$data->gender}}</td>
@@ -133,46 +131,51 @@
                                                 </div>
 
                                                 <form action="/update/{{$data->id}}" method="POST">
-                                                     <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="Title">Student name</label>
-                                    <input type="text" class="form-control" id="text1" name="name"
-                                        aria-describedby="titleHelp" placeholder="Enter name" required>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="Title">Student name</label>
+                                                            <input type="text" class="form-control" id="text1"
+                                                                name="name" aria-describedby="titleHelp"
+                                                                placeholder="Enter name" required>
 
-                                </div>
-                                <div class="form-group">
-                                    <label for="pircebook">Student RegNo</label>
-                                    <input type="text" class="form-control" id="pircebook" name="regno"
-                                        placeholder="Enter RegNo" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="auther">Issue_Date</label>
-                                    <input type="date" class="form-control" id="issue" name="issuedate"
-                                       required>
-                                </div>
-                                 <div class="form-group">
-                                    <label for="auther">Return_Date</label>
-                                    <input type="date" class="form-control" id="return" name="returndate"
-                                       required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="bookedition">Course</label>
-                                    <input type="text" class="form-control" id="course" placeholder="Enter Course"
-                                        name="studentcourse" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="department">Department</label>
-                                    <input type="text" class="form-control" id="department" name="studentdepartment"
-                                        placeholder="Enter Department" required>
-                                </div>
-                                <label for="department">Gender</label> </br>
-                                <input type="radio" name="gender" value="male" id="male" > Male
-                                <input type="radio" name="gender" value="female"id="female"> Female
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pircebook">Student RegNo</label>
+                                                            <input type="text" class="form-control" id="pircebook"
+                                                                name="regno" placeholder="Enter RegNo" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="auther">Issue_Date</label>
+                                                            <input type="date" class="form-control" id="issue"
+                                                                name="issuedate" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="auther">Return_Date</label>
+                                                            <input type="date" class="form-control" id="return"
+                                                                name="returndate" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="bookedition">Course</label>
+                                                            <input type="text" class="form-control" id="course"
+                                                                placeholder="Enter Course" name="studentcourse"
+                                                                required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="department">Department</label>
+                                                            <input type="text" class="form-control" id="department"
+                                                                name="studentdepartment" placeholder="Enter Department"
+                                                                required>
+                                                        </div>
+                                                        <label for="department">Gender</label> </br>
+                                                        <input type="radio" name="gender" value="male" id="male"> Male
+                                                        <input type="radio" name="gender" value="female" id="female">
+                                                        Female
 
-                            </div>
-                            <div class="modal-footer border-top-0 d-flex justify-content-center">
-                                <button type="submit" class="btn btn-success">Submit</button>
-                            </div>
+                                                    </div>
+                                                    <div
+                                                        class="modal-footer border-top-0 d-flex justify-content-center">
+                                                        <button type="submit" class="btn btn-success">Submit</button>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>
@@ -193,7 +196,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel" style="font-size: 21px;
-                                                            font-weight: bold;">Delete Student</h5>
+                                                            font-weight: bold;">Delete </h5>
                                                     <button type=" button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -231,6 +234,7 @@
     </div>
 
 </div>
+
 
 
 

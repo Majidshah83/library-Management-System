@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/add','BookController@addBook');
     Route::post('/update/{id}','BookController@update');
     Route::get('/delete/{id}','BookController@deleteBook');
-   
+
 
 });
 
@@ -32,6 +32,5 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('admin/login','AdminController@adminLogin');
 Route::post('admin-login','AdminController@customLogin');
 Route::get('/student','StudentController@show');
-
+Route::post('/addbook','StudentController@addstudent');
 Auth::routes();
-

@@ -25,33 +25,35 @@
                             </button>
                         </div>
                         <form action="/add" method="POST">
+
+
                             @csrf
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="Title">Book Title</label>
                                     <input type="text" class="form-control" id="text1" name="title"
-                                        aria-describedby="titleHelp" placeholder="Enter Title" required>
+                                        aria-describedby="titleHelp" placeholder="Enter Title" >
 
                                 </div>
                                 <div class="form-group">
                                     <label for="pircebook">Book Price</label>
                                     <input type="text" class="form-control" id="pircebook" name="price"
-                                        placeholder="Enter Price" required>
+                                        placeholder="Enter Price">
                                 </div>
                                 <div class="form-group">
                                     <label for="auther">Book Auther</label>
                                     <input type="text" class="form-control" id="auther" name="auther"
-                                        placeholder="Enter Auther Name" required>
+                                        placeholder="Enter Auther Name">
                                 </div>
                                 <div class="form-group">
                                     <label for="bookedition">Book Edition</label>
                                     <input type="text" class="form-control" id="bookedition" placeholder="Enter Edition"
-                                        name="edition" required>
+                                        name="edition">
                                 </div>
                                 <div class="form-group">
                                     <label for="categorybook">Book Category</label>
                                     <input type="text" class="form-control" id="categorybook" name="category"
-                                        placeholder="Enter Category" required>
+                                        placeholder="Enter Category">
                                 </div>
                             </div>
                             <div class="modal-footer border-top-0 d-flex justify-content-center">
@@ -64,12 +66,11 @@
             <div class="col-sm-12">
 
                 <div class="card-box table-responsive">
-                  @if(count($errors)>0)
+           @if(count($errors)>0)
               @foreach ($errors->all() as $errors)
               <p class="alert alert-danger">{{$errors}}</p>
               @endforeach
               @endif
-
                     @if(session('success'))
                     <div class="alert alert-success">
                         <strong>{{session('success')}}</strong>
