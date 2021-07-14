@@ -33,4 +33,6 @@ Route::get('admin/login','AdminController@adminLogin');
 Route::post('admin-login','AdminController@customLogin');
 Route::get('/student','StudentController@show');
 Route::post('/addbook','StudentController@addstudent');
+Route::post('/studentupdate/{id}','StudentController@update');
+Route::get('/deletestudent/{id}','StudentController@deleteStudent');
 Auth::routes();
