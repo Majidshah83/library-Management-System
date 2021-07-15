@@ -20,7 +20,7 @@
                     </li>
 
                     <li class="issuebook">
-                        <a href="/" class="waves-effect"><i class="ti-book"></i> <span> Book Issue </span></a>
+                        <a href="/issue" class="waves-effect"><i class="ti-book"></i> <span> Book Issue </span></a>
                     </li>
 
                 </ul>

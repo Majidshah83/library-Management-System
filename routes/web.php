@@ -35,4 +35,8 @@ Route::get('/student','StudentController@show');
 Route::post('/addbook','StudentController@addstudent');
 Route::post('/studentupdate/{id}','StudentController@update');
 Route::get('/deletestudent/{id}','StudentController@deleteStudent');
+Route::get('/issue', function () {
+    return view('admin.bookissue');
+});
+
 Auth::routes();
