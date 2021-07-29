@@ -3,6 +3,7 @@ use App\Http\Controllers\Controller;
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Student;
+use App\Book;
 class StudentController extends Controller
 {
     //show student record
@@ -65,5 +66,14 @@ public function update(Request $req,$id){
     $student->delete();
     return redirect('/student')->with('success','Delete Student Successfuly');
  }
+
+// public function index()
+// {
+// $std=Student::first();
+// $book=Book::first();
+
+// $std->books()->attach($issuedById);
+// }
+
 
 }

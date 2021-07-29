@@ -35,8 +35,11 @@ Route::get('/student','StudentController@show');
 Route::post('/addbook','StudentController@addstudent');
 Route::post('/studentupdate/{id}','StudentController@update');
 Route::get('/deletestudent/{id}','StudentController@deleteStudent');
-Route::get('/issue', function () {
-    return view('admin.bookissue');
-});
-
+Route::get('/issue','IssuebokController@issuebook');
+Route::post('/issue-book','IssuebokController@saveissuebook');
+Route::get('/show','IssuebokController@bookshow');
+Route::get('/showstudent','IssuebokController@showstudent');
+Route::get('/issuelist','IssuebokController@index');
+Route::post('/listupdate/{id}','IssuebokController@updatelist');
+Route::get('/listdelete/{id}','IssuebokController@deleteissuebook');
 Auth::routes();

@@ -21,8 +21,13 @@
 
                     <li class="issuebook">
                         <a href="/issue" class="waves-effect"><i class="ti-book"></i> <span> Book Issue </span></a>
+                        
                     </li>
 
+                    <li class="issuebooklist">
+                        <a href="/issuelist" class="waves-effect"><i class="ti-book"></i> <span> Book Issue List </span></a>
+                        
+                    </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>

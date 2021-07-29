@@ -1,5 +1,31 @@
 @extends('admin.master');
 @section('content');
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+   $(document).on("click", ".updatestudent-modal", function() {
+  var id = $(this).val();  
+  url = "/127.0.0.1:8000/student/show"+id;
+  alert("helo majid");
+  $.ajax({
+    url: url,
+    method: "post"    
+  }).done(function(response) {
+    //Setting input values
+    $("input[name='id']").val(id);
+    $("input[name='name']").val(response.name);
+    $("input[name='regno']").val(response.regno);
+    $("input[name='date_of_issue']").val(response.date_of_issue);
+     $("input[name='date_of_return']").val(response.date_of_return);
+      $("input[name='course']").val(response.course);
+      $("input[name='department']").val(response.department);
+      $("input[name='gender']").val(response.gender);
+      $("input[name='gender']").val(response.gender);
+
+    //Setting submit url
+    $("studentupdateform").attr("action","/127.0.0.1:8000/student/show"+id)
+  });
+});
+</script>
 <div class="content-page">
    <div class="container">
       <!-- session insert successfuly -->
@@ -105,69 +131,13 @@
                         <!-- update modal-->
                         <td>
                            <div class="container">
-                              <button type="button" class="btn btn-primary" data-toggle="modal"
+                              <button type="button" class="btn btn-primary updatestudent-modal" data-toggle="modal"
                                  data-target="{{'#studentupdateform' . $data->id }}"
                                  style=" margin-bottom:9px; margin-left:-2px; margin-top:11px; border-radius: 61px;">
                               Update Student
                               </button>
                            </div>
-                           <div class="modal fade" id="{{'studentupdateform' . $data->id }}" tabindex="-1"
-                              role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered" role="document">
-                                 <div class="modal-content">
-                                    <div class="modal-header border-bottom-0">
-                                       <p class="modal-title" id="exampleModalLabel"
-                                          style="font-size: 29px; font-weight: bold;">
-                                          Update Student
-                                       </p>
-                                       <button type="button" class="close" data-dismiss="modal"
-                                          aria-label="Close">
-                                       <span aria-hidden="true">&times;</span>
-                                       </button>
-                                    </div>
-                                    <form action="/studentupdate/{{$data->id}}" method="POST">
-                                       @csrf
-                                       <div class="modal-body">
-                                          <div class="form-group">
-                                            <input type="hidden" value={{$data->id}} name="id">
-                                             <label for="name">Student name</label>
-                                             <input type="text" class="form-control" id="name" name="name"
-                                                aria-describedby="titleHelp" placeholder="Enter name" value="{{$data->name}}">
-                                          </div>
-                                          <div class="form-group">
-                                             <label for="regno">Student RegNo</label>
-                                             <input type="text" class="form-control" id="regno" name="regno"
-                                                placeholder="Enter RegNo" value="{{$data->regno}}">
-                                          </div>
-                                          <div class="form-group">
-                                             <label for="date_of_issue">Issue_Date</label>
-                                             <input type="date" id="date_of_issue" name="date_of_issue" class="form-control" value="{{$data->date_of_issue}}">
-                                          </div>
-                                          <div class="form-group">
-                                             <label for="date_of_return">Return_Date</label>
-                                             <input type="date" class="form-control" id="date_of_return" name="date_of_return" value="{{$data->date_of_return}}">
-                                          </div>
-                                          <div class="form-group">
-                                             <label for="course">Course</label>
-                                             <input type="text" class="form-control" id="course" name="course"
-                                                placeholder="Enter course" value="{{$data->course}}">
-                                          </div>
-                                          <div class="form-group">
-                                             <label for="department">Department</label>
-                                             <input type="text" class="form-control" id="department" name="department"
-                                                placeholder="Enter course" value="{{$data->department}}">
-                                          </div>
-                                          <label for="gender">Gender</label> </br>
-                                          <input type="radio" name="gender" value="Male" {{ $data->gender == 'Male' ? 'checked' : ''}}> Male
-                                          <input type="radio" name="gender"value="Female" {{ $data->gender == 'Female' ? 'checked' : ''}}>Female
-                                       </div>
-                                       <div class="modal-footer border-top-0 d-flex justify-content-center">
-                                          <button type="submit" class="btn btn-success">Update</button>
-                                       </div>
-                                    </form>
-                                 </div>
-                              </div>
-                           </div>
+                           
                         </td>
                         <td>
                            <!-- Button trigger modal -->

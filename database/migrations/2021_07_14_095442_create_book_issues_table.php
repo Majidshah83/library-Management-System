@@ -15,10 +15,10 @@ class CreateBookIssuesTable extends Migration
     {
         Schema::create('book_issues', function (Blueprint $table) {
             $table->id();
-             $table->unsignedBigInteger('bookId');
-            $table->foreign('bookId')->references('id')->on('books');
-            $table->unsignedBigInteger('issuedById');
-            $table->foreign('issuedById')->references('id')->on('students'); 
+             $table->unsignedBigInteger('book_Id');
+            $table->foreign('book_Id')->references('id')->on('books');
+            $table->unsignedBigInteger('issuedBy_Id');
+            $table->foreign('issued_ById')->references('id')->on('students'); 
             $table->date('issuesFrom');
             $table->date('issuedTo');
             $table->string('staffDetail');
