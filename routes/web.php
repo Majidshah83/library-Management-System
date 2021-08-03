@@ -25,10 +25,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/update/{id}','BookController@update');
     Route::get('/delete/{id}','BookController@deleteBook');
 
-
 });
 
- Route::get('logout','AdminController@customLogout');
+Route::post('update-student','StudentController@updateStudent');
+Route::post('student-record-update','StudentController@updateRecordStudent');
+
+Route::get('logout','AdminController@customLogout');
 Route::get('admin/login','AdminController@adminLogin');
 Route::post('admin-login','AdminController@customLogin');
 Route::get('/student','StudentController@show');
@@ -40,6 +42,6 @@ Route::post('/issue-book','IssuebokController@saveissuebook');
 Route::get('/show','IssuebokController@bookshow');
 Route::get('/showstudent','IssuebokController@showstudent');
 Route::get('/issuelist','IssuebokController@index');
-Route::post('/listupdate/{id}','IssuebokController@updatelist');
+Route::post('/listupdate/{id}','IssuebokController@updateissuebook');
 Route::get('/listdelete/{id}','IssuebokController@deleteissuebook');
 Auth::routes();

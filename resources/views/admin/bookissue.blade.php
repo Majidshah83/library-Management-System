@@ -1,4 +1,4 @@
-@extends('admin.master');
+@extends('admin.master');c
 @section('content');
 <div class="content-page">
   <style>

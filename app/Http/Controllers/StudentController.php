@@ -18,9 +18,6 @@ class StudentController extends Controller
     $req->validate([
     'name' => 'required',
     'regno' => 'required',
-    'date_of_issue' => 'required',
-    'date_of_return' => 'required',
-    'course' => 'required',
     'department' => 'required',
     'gender' => 'required',
     
@@ -29,9 +26,6 @@ class StudentController extends Controller
      $student=new Student();
      $student->name=$req->name;
      $student->regno=$req->regno;
-     $student->date_of_issue=$req->date_of_issue;
-     $student->date_of_return=$req->date_of_return;
-     $student->course=$req->course;
      $student->department=$req->department;
      $student->gender=$req->gender;
      $student->save();
@@ -44,18 +38,12 @@ public function update(Request $req,$id){
     $req->validate([
    'name'=>'required',
     'regno' => 'required',
-    'date_of_issue' => 'required',
-    'date_of_return' => 'required',
-    'course' => 'required',
     'department' => 'required',
     'gender' => 'required',
     ]);
     $student=Student::find($id);
     $student->name=$req->input('name');
     $student->regno=$req->input('regno');
-     $student->date_of_issue=$req->input('date_of_issue');
-     $student->date_of_return=$req->input('date_of_return');
-    $student->course=$req->input('course');
      $student->department=$req->input('department');
      $student->gender=$req->input('gender');
      $student->save();
@@ -74,6 +62,25 @@ public function update(Request $req,$id){
 
 // $std->books()->attach($issuedById);
 // }
+
+ public function updateStudent(Request $request){
+
+   $student = Student::where('id',$request->id)->first();
+   return view('admin.update_student')->with('student',$student)->render();
+
+ }
+
+ public function updateRecordStudent(Request $request){
+
+    $data = ['name' => $request->name,'regno' => $request->regno,'department' => $request->department,'gender' => $request->gender];
+    $update = Student::where('id',$request->id)->update($data);
+    if($update){
+        return redirect()->back()->with('message','Update Successfuly');
+    } else {
+        return redirect()->back()->with('message','Update not Successfuly');
+    }
+
+ }
 
 
 }

@@ -85,8 +85,7 @@
                                 <th>Auther</th>
                                 <th>Edition</th>
                                 <th>Category</th>
-                                <th>Update</th>
-                                <th>Delete</th>
+                                <th>Action</th>
 
                             </tr>
                         </thead>
@@ -103,129 +102,60 @@
 
                                 <!-- update modal-->
                                 <td>
-                                    <div class="container">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target="{{ '#Updateform' . $data->id }}"
-                                            style=" margin-bottom:9px; margin-left:-2px; margin-top:11px; border-radius: 61px;">
-                                            Update Book
-                                        </button>
-                                    </div>
-                                    <div class="modal fade" id="{{ 'Updateform' . $data->id }}" tabindex="-1"
-                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header border-bottom-0">
-                                                    <p class="modal-title" id="exampleModalLabel"
-                                                        style="font-size: 29px; font-weight: bold;">
-                                                        Update Book</p>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <form action="/update/{{$data->id}}" method="POST">
-                                                    @csrf
-                                                    <div class="modal-body">
-                                                        <div class="form-group">
-                                                            <label for="Title">Book Title</label>
-                                                            <input type="hidden" value={{$data['id']}} name="id">
-                                                            <input type="text" class="form-control" id="text1"
-                                                                name="title" aria-describedby="titleHelp"
-                                                                placeholder="Enter Title" value="{{$data['title']}}"
-                                                                required>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="pircebook">Book Price</label>
-                                                            <input type="text" class="form-control" id="pircebook"
-                                                                name="price" placeholder="Enter Price"
-                                                                value="{{$data['price']}}" required>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="auther">Book Auther</label>
-                                                            <input type="text" class="form-control" id="auther"
-                                                                name="auther" placeholder="Enter Auther Name"
-                                                                value="{{$data['auther']}}" required>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="bookedition">Book Edition</label>
-                                                            <input type="text" class="form-control" id="bookedition"
-                                                                placeholder="Enter Edition" name="edition"
-                                                                value="{{$data['edition']}}" required>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="categorybook">Book Category</label>
-                                                            <input type="text" class="form-control" id="categorybook"
-                                                                name="category" placeholder="Enter Category"
-                                                                value="{{$data['category']}}" required>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="modal-footer border-top-0 d-flex justify-content-center">
-                                                        <button type="submit" class="btn btn-success">Update</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <button type="button"class=" btn btn-primary" onclick="UpdateBook({{$data}})">Update Book</button>
+                            <a href="" class="btn btn-success">Delete</a>
+                                    
                                 </td>
-                                <td>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        style=" margin-bottom:9px; margin-left:-2px; margin-top:11px; border-radius: 61px;"
-                                        data-target="{{'#deleteModal' .$data->id}}">
-
-                                        Delete Book
-                                    </button>
-                                    <!-- Delete  Modal  -->
-                                    <div class="modal fade" id="{{'deleteModal' . $data->id}}" tabindex="-1"
-                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel" style="font-size: 21px;
-                                                            font-weight: bold;">Delete Book</h5>
-                                                    <button type=" button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Are you sure you want delete book</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Close</button>
-                                                    <a class="btn btn-primary" href='delete/{{ $data->id }}'>Delete</a>
-                                                    <!-- <button type="button" class="btn btn-primary">Delete -->
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-
                             </tr>
                             @endforeach
 
                         </tbody>
                     </table>
-
-
                 </div>
             </div>
 
-
-        </div>
-
-
+<!-- Modal -->
+<div class="modal" id="update-book">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </button>
+      </div>
+       <!-- Modal body -->
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
     </div>
-
+  </div>
+</div>
+        </div>
+    </div>
 </div>
 
+<script type="text/javascript">
+    function UpdateBook(data){
+     $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+      });
+     $.ajax({
+ 
+       type:'POST',
+        url:"{{url('update-book')}}",
+        data:{id:id},
+        success:function(data){
 
-
-
+        }
+     
+     });
+    }
+</script>
 
 
 @stop

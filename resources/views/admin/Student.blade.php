@@ -1,31 +1,5 @@
 @extends('admin.master');
 @section('content');
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-   $(document).on("click", ".updatestudent-modal", function() {
-  var id = $(this).val();  
-  url = "/127.0.0.1:8000/student/show"+id;
-  alert("helo majid");
-  $.ajax({
-    url: url,
-    method: "post"    
-  }).done(function(response) {
-    //Setting input values
-    $("input[name='id']").val(id);
-    $("input[name='name']").val(response.name);
-    $("input[name='regno']").val(response.regno);
-    $("input[name='date_of_issue']").val(response.date_of_issue);
-     $("input[name='date_of_return']").val(response.date_of_return);
-      $("input[name='course']").val(response.course);
-      $("input[name='department']").val(response.department);
-      $("input[name='gender']").val(response.gender);
-      $("input[name='gender']").val(response.gender);
-
-    //Setting submit url
-    $("studentupdateform").attr("action","/127.0.0.1:8000/student/show"+id)
-  });
-});
-</script>
 <div class="content-page">
    <div class="container">
       <!-- session insert successfuly -->
@@ -62,19 +36,6 @@
                               placeholder="Enter RegNo">
                         </div>
                         <div class="form-group">
-                           <label for="date_of_issue">Issue_Date</label>
-                           <input type="date" id="date_of_issue" name="date_of_issue" class="form-control">
-                        </div>
-                        <div class="form-group">
-                           <label for="date_of_return">Return_Date</label>
-                           <input type="date" class="form-control" id="date_of_return" name="date_of_return">
-                        </div>
-                        <div class="form-group">
-                           <label for="course">Course</label>
-                           <input type="text" class="form-control" id="course" name="course"
-                              placeholder="Enter course">
-                        </div>
-                        <div class="form-group">
                            <label for="department">Department</label>
                            <input type="text" class="form-control" id="department" name="department"
                               placeholder="Enter course">
@@ -108,13 +69,10 @@
                         <th>Id</th>
                         <th>Name</th>
                         <th>RegNo</th>
-                        <th>Issue_Date</th>
-                        <th>Return_Date</th>
-                        <th>Course</th>
                         <th>Department</th>
                         <th>Gender</th>
-                        <th>Update</th>
-                        <th>Delete</th>
+                        <th>Action</th>
+                    
                      </tr>
                   </thead>
                   <tbody>
@@ -123,55 +81,13 @@
                         <td>{{$data->id}}</td>
                         <td>{{$data->name}}</td>
                         <td>{{$data->regno}}</td>
-                        <td>{{$data->date_of_issue}}</td>
-                        <td>{{$data->date_of_return}}</td>
-                        <td>{{$data->course}}</td>
                         <td>{{$data->department}}</td>
                         <td>{{$data->gender}}</td>
-                        <!-- update modal-->
-                        <td>
-                           <div class="container">
-                              <button type="button" class="btn btn-primary updatestudent-modal" data-toggle="modal"
-                                 data-target="{{'#studentupdateform' . $data->id }}"
-                                 style=" margin-bottom:9px; margin-left:-2px; margin-top:11px; border-radius: 61px;">
+                        <td> 
+                           <button type="button" class="btn btn-primary btton" onclick="UpdateStudent({{$data}})"> 
                               Update Student
-                              </button>
-                           </div>
-                           
-                        </td>
-                        <td>
-                           <!-- Button trigger modal -->
-                           <button type="button" class="btn btn-danger" data-toggle="modal"
-                              style=" margin-bottom:9px; margin-left:-2px; margin-top:11px; border-radius: 61px;"
-                              data-target="{{'#deletestudent' .$data->id}}">
-                           Delete Student
                            </button>
-                           <!-- Delete  Modal  -->
-                           <div class="modal fade" id="{{'deletestudent' . $data->id}}" tabindex="-1"
-                              role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog" role="document">
-                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                       <h5 class="modal-title" id="exampleModalLabel" style="font-size: 21px;
-                                          font-weight: bold;">Delete </h5>
-                                       <button type=" button" class="close" data-dismiss="modal"
-                                          aria-label="Close">
-                                       <span aria-hidden="true">&times;</span>
-                                       </button>
-                                    </div>
-                                    <div class="modal-body">
-                                       <p>Are you sure you want delete Student</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                       <button type="button" class="btn btn-secondary"
-                                          data-dismiss="modal">Close</button>
-                                       <a class="btn btn-primary" href='deletestudent/{{ $data->id }}'>Delete</a>
-                                       <!-- <button type="button" class="btn btn-primary">Delete -->
-                                       </button>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
+                           <a href="{{url('listdelete',$data->id)}}" class="btn btn-success">Delete Student</a>
                         </td>
                      </tr>
                      @endforeach
@@ -179,7 +95,58 @@
                </table>
             </div>
          </div>
+
+         <!-- The Modal -->
+
+         <div class="modal" id="update-student">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Update Student</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <!-- Modal body -->
+              <div class="modal-body">
+               <div id="update-data-student"></div>
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+         </div>
+        
+
       </div>
    </div>
 </div>
+<script type="text/javascript">
+   function UpdateStudent(data){
+      $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+      });
+      let id = data['id'];
+      $.ajax({
+        type:'POST',
+        url:"{{url('update-student')}}",
+        data:{id:id},
+        success:function(data){
+
+         $('#update-student').modal('show');
+         $('#update-data-student').html('');
+         $('#update-data-student').append(data);
+        }
+      });
+   }
+</script>
+<style type="text/css">
+   
+   .btton{
+      margin-right: 20px;
+   }
+</style>
 @stop
