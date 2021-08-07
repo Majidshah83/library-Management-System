@@ -1,25 +1,5 @@
-@extends('admin.master');c
-@section('content');
-<div class="content-page">
-    <style>
-    .form-control {
-        border-color: black;
-    }
 
-    .title {
-        text-align: center;
-        color: blue;
-        font-weight: bold;
-    }
-
-    label {
-        color: blue;
-        font-weight: bold;
-        font-size: 16px;
-    }
-    </style>
-    <div class="container" style="margin-top: 2%;">
-        <form action="{{url('/issue-book')}}" method="POST">
+         <form action="{{url('book-record-list')}}" method="POST">
             @csrf
             <div class="modal-body">
                 @if(count($errors)>0)
@@ -37,7 +17,7 @@
                     <label for="issuedBy_Id">Select Student:</label>
                     <select class="form-control" id="issuedBy_Id" name="issuedBy_Id">
                         @foreach($students as $student)
-                        <option value="{{$student->id}}">{{$student->name}}</option>
+                        <option value="{{$student->id}}"@if($student->id == $student->student) selected @endif>{{$student->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -65,8 +45,3 @@
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
         </form>
-
-    <
-/div>
-</div>
-@stop

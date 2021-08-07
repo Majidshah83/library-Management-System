@@ -32,7 +32,7 @@
                                 <div class="form-group">
                                     <label for="Title">Book Title</label>
                                     <input type="text" class="form-control" id="text1" name="title"
-                                        aria-describedby="titleHelp" placeholder="Enter Title" >
+                                        aria-describedby="titleHelp" placeholder="Enter Title">
 
                                 </div>
                                 <div class="form-group">
@@ -66,12 +66,12 @@
             <div class="col-sm-12">
 
                 <div class="card-box table-responsive">
-           @if(count($errors)>0)
-              @foreach ($errors->all() as $errors)
-              <p class="alert alert-danger">{{$errors}}</p>
-              @endforeach
-              @endif
-                    @if(session('success'))
+                    @if(count($errors)>0)
+                    @foreach ($errors->all() as $errors)
+                    <p class="alert alert-danger">{{$errors}}</p>
+                    @endforeach
+                    @endif
+                    @if(session('message'))
                     <div class="alert alert-success">
                         <strong>{{session('success')}}</strong>
                     </div>
@@ -102,9 +102,10 @@
 
                                 <!-- update modal-->
                                 <td>
-                            <button type="button"class=" btn btn-primary" onclick="UpdateBook({{$data}})">Update Book</button>
-                            <a href="" class="btn btn-success">Delete</a>
-                                    
+                                    <button type="button" class=" btn btn-primary"
+                                        onclick="UpdateBook({{$data}})">Update Book</button>
+                                    <a href="{{url('bookdelete',$data->id)}}" class="btn btn-success">Delete</a>
+
                                 </td>
                             </tr>
                             @endforeach
@@ -113,49 +114,52 @@
                     </table>
                 </div>
             </div>
+            <!-- Modal -->
+            <div class="modal" id="update-book">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Update Boook Record</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div id="update-data-book">
 
-<!-- Modal -->
-<div class="modal" id="update-book">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </button>
-      </div>
-       <!-- Modal body -->
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-    function UpdateBook(data){
-     $.ajaxSetup({
-           headers: {
-               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-           }
-      });
-     $.ajax({
- 
-       type:'POST',
-        url:"{{url('update-book')}}",
-        data:{id:id},
-        success:function(data){
-
+<script type="text/javacsript">
+    function UpdateBook(data) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-     
-     });
-    }
-</script>
+    });
+    let id = data['id'];
+    $.ajax({
+        type: 'POST',
+        url: "{{url('update-book')}}",
+        data: {
+            id: id
+        },
+        success: function(data) {
 
+            $('#update-book').modal('show');
+            $('#update-data-book').html('');
+            $('#update-data-book').append(data);
+        }
+    });
+}
+</script>
 
 @stop

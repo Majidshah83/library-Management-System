@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Controller;
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Student;
 use App\Book;
@@ -20,7 +21,7 @@ class StudentController extends Controller
     'regno' => 'required',
     'department' => 'required',
     'gender' => 'required',
-    
+
 
 ]);
      $student=new Student();
@@ -30,7 +31,7 @@ class StudentController extends Controller
      $student->gender=$req->gender;
      $student->save();
      // dd($student);
-     return redirect('/student')->with('success','Student Added Successfuly');
+     return redirect('/student')->with('message','Student Added Successfuly');
     }
 
 
@@ -47,12 +48,12 @@ public function update(Request $req,$id){
      $student->department=$req->input('department');
      $student->gender=$req->input('gender');
      $student->save();
-     return redirect('/student')->with('success','Student update Successfuly');
+     return redirect('/student')->with('message','Student update Successfuly');
  }
  public function deleteStudent($id){
     $student=Student::find($id);
     $student->delete();
-    return redirect('/student')->with('success','Delete Student Successfuly');
+    return redirect('/student')->with('message','Delete Student Successfuly');
  }
 
 // public function index()
@@ -70,17 +71,29 @@ public function update(Request $req,$id){
 
  }
 
- public function updateRecordStudent(Request $request){
 
-    $data = ['name' => $request->name,'regno' => $request->regno,'department' => $request->department,'gender' => $request->gender];
+
+
+public function updateRecordStudent (Request $request){
+
+   $data = ['name' => $request->name,'regno' => $request->regno,'department' => $request->department,'gender' => $request->gender];
     $update = Student::where('id',$request->id)->update($data);
     if($update){
         return redirect()->back()->with('message','Update Successfuly');
     } else {
-        return redirect()->back()->with('message','Update not Successfuly');
+        return redirect()->back()->with('error','Update not Successfuly');
     }
 
  }
 
+
+ //dashbord count student 
+public function countStudent()
+{
+  // $studentscount=Student::count();
+  $studentscount=DB::table('students')->count();
+  return view('admin.dashboard', compact('studentscount'));
+ 
+}
 
 }

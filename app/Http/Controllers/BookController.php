@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Book;
 class BookController extends Controller
 {     //Show book detail
@@ -29,32 +30,58 @@ $req->validate([
        $book->category=$req->category;
     //    dd($book);
        $book->save();
-       return redirect('/book')->with('success','Book Added Successfuly');
+       return redirect('/book')->with('message','Book Added Successfuly');
 
     }
-    public function update(Request $req, $id)
-    {
-        $req->validate([
-            'title'=>'required',
-            'price'=>'required',
-            'auther'=>'required',
-            'edition'=>'required',
-            'category'=>'required'
-        ]);
-        $book=Book::find($id);
-        $book->title=$req->input('title');
-        $book->price=$req->input('price');
-        $book->auther=$req->input('auther');
-        $book->edition=$req->input('edition');
-        $book->category=$req->input('category');
-        $book->save();
+    // public function update(Request $req, $id)
+    // {
+    //     $req->validate([
+    //         'title'=>'required',
+    //         'price'=>'required',
+    //         'auther'=>'required',
+    //         'edition'=>'required',
+    //         'category'=>'required'
+    //     ]);
+    //     $book=Book::find($id);
+    //     $book->title=$req->input('title');
+    //     $book->price=$req->input('price');
+    //     $book->auther=$req->input('auther');
+    //     $book->edition=$req->input('edition');
+    //     $book->category=$req->input('category');
+    //     $book->save();
 
-        return redirect('/book')->with('success', 'Book update Successfuly');
+    //     return redirect('/book')->with('success', 'Book update Successfuly');
+    // }
+
+   //get data books
+    public function updateBook(Request $request){
+        $book=Book::where('id',$request->id)->first();
+       return view('admin.update_book')->with('book',$book)->render();
+    }
+     //updat data books
+public function updateRecordBook (Request $request){
+
+   $data = ['title' => $request->title,'price' => $request->price,'auther' => $request->auther,'edition' => $request->edition,'category'=>$request->category];
+    // dd($data);
+   $update = Book::where('id',$request->id)->update($data);
+    if($update){
+        return redirect()->back()->with('message','Update Successfuly');
+    } else {
+        return redirect()->back()->with('error','Update not Successfuly');
     }
 
-    public function deleteBook($id){
+ }
+   //Delete data books
+  public function deleteBook($id){
           $contact = Book::find($id);
           $contact->delete();
-          return redirect('/book')->with('success','Book Delete Successfuly');
+          return redirect('/book')->with('message','Book Delete Successfuly');
     }
+
+//on dashbord show count books
+public function countBook(){
+     $studentscount=DB::table('books')->count();
+     return view('admin.dashboard',compact('studentscount'));
+}
+
 }
