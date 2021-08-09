@@ -76,10 +76,9 @@ public function updateList (Request $request)
 {
  $student=Student::all();
  $book=Book::all();
- $data=Book_issues::all();
- $isuses=Book_issues::where('id',$request->id)->first();
+ $issue=Book_issues::where('id',$request->id)->first();
  // dd($student,$book,$data);
- return view('admin.update_list')->with('students',$student)->with('books' ,$book)->with('isuses',$isuses);
+ return view('admin.update_list')->with('students',$student)->with('books' ,$book)->with('issue',$issue);
   // $data=Book_issues::where('id',$request->id)->first();
   // return view('admin.update_list')->with('data',$data)->render();
 
@@ -104,9 +103,7 @@ public function deleteissuebook($id){
         return redirect('/issuelist')->with('message','Delete Successfuly');
 }
 
-public function countIssuebook(){
 
-    $issuebookcout=DB::table('book_issues')->count();
-    return view('admin.dashboard',compact('issuebookcout'));
-}
+
+
 }

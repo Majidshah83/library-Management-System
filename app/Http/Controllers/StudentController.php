@@ -87,13 +87,5 @@ public function updateRecordStudent (Request $request){
  }
 
 
- //dashbord count student 
-public function countStudent()
-{
-  // $studentscount=Student::count();
-  $studentscount=DB::table('students')->count();
-  return view('admin.dashboard', compact('studentscount'));
  
-}
-
 }

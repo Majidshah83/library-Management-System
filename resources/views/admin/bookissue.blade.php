@@ -38,7 +38,10 @@
                     <select class="form-control" id="issuedBy_Id" name="issuedBy_Id">
                         @foreach($students as $student)
                         <option value="{{$student->id}}">{{$student->name}}</option>
+                        if()
+                        <option value="audi" selected>Audi</option>
                         @endforeach
+
                     </select>
                 </div>
                 <div class="form-group">

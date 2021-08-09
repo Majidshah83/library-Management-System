@@ -29,7 +29,7 @@
                                 <div class="widget-bg-color-icon card-box fadeInDown animated" style="
     background-color: yellow;
 ">
-                                    <div class="bg-icon bg-icon-info pull-left" style="background-color:violet;">
+                                    <div class="bg-icon bg-icon-info pull-left" style="background-color:beige;">
                                         <i class="ti-user"></i>
                                     </div>
                                     <div class="text-right">
@@ -62,12 +62,14 @@
                                 <div class="widget-bg-color-icon card-box" style="
     background-color: navajowhite;
 ">
-                                    <div class="bg-icon bg-icon-purple pull-left">
+                                    <div class="bg-icon bg-icon-purple pull-left" style="
+    background-color:beige ;
+">
                                           <i class="ti-book"></i>
                                     </div>
                                     <div class="text-right">
-                                        <h3 class="text-dark"><b class="counter">{{ $isusesbook }}</b></h3>
-                                        <p class="text-muted">Issue Book</p>
+                                        <h3 class="text-dark"><b class="counter" style="color: black;">{{ $isusesbook }}</b></h3>
+                                        <p class="text-muted" style="color: black;font-size: 18px;">Issue Book</p>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -77,12 +79,15 @@
                                 <div class="widget-bg-color-icon card-box" style="
     background-color: black;
 ">
-                                    <div class="bg-icon bg-icon-success pull-left">
+                                    <div class="bg-icon bg-icon-success pull-left" style="
+    background-color: beige;
+">
                                        <i class="ti-user"></i>
                                     </div>
                                     <div class="text-right">
-                                        <h3 class="text-dark"><b class="counter">{{ $user }}</b></h3>
-                                        <p class="text-muted">Admins</p>
+                                        <h3 class="text-dark"><b class="counter" style="color: white;">{{ $user }}</b></h3>
+                                        <p class="text-muted" style=" color: WHITE;font-size: 18px;
+">Admins</p>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -111,24 +116,26 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Std Name</th>
+                            <th>student name</th>
                             <th>Book Name</th>
                             <th>Issue_Date</th>
                             <th>Return_Date</th>
+                            <th>Fines</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        
+                 @foreach($orders as $data)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$data->id}}</td>
+                            <td>{{$data->students->name}}</td>
+                            <td>{{$data->books->title}}</td>
+                            <td>{{$data->issues_date}}</td>
+                            <td>{{$data->return_date}}</td>
+                            <td>200 pkr</td>
+                            <td>Late</td>
                         </tr>
-
+             @endforeach
                     </tbody>
                 </table>
             </div>

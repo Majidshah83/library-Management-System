@@ -1,3 +1,4 @@
+@include('admin.include.script');
 @extends('admin.master');
 @section('content');
 <!-- add css -->
@@ -138,7 +139,7 @@
         </div>
     </div>
 </div>
-<script type="text/javacsript">
+<script>
     function UpdateBook(data) {
     $.ajaxSetup({
         headers: {

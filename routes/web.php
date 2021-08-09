@@ -45,7 +45,6 @@ Route::get('/listdelete/{id}','IssuebokController@deleteissuebook');
 //dashbord data
 Route::get('dashboard','Dashbordcontroller@counts');
 
-
 Route::get('logout','AdminController@customLogout');
 Route::get('admin/login','AdminController@adminLogin');
 Route::post('admin-login','AdminController@customLogin');

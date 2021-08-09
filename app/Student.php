@@ -7,7 +7,7 @@ use App\Book;
 use App\Student;
 class Student extends Model
 {
-    protected $fillable=['name','regno','date_of_issue','date_of_return','course','department','gender'];
+    protected $fillable=['name','regno','course','department','gender'];
     protected $primaryKey='id';
 
     public function books()

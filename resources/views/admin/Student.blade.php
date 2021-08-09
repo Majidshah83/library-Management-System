@@ -1,4 +1,5 @@
 @extends('admin.master');
+@include('admin.include.script');
 @section('content');
 <div class="content-page">
     <div class="container">

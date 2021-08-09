@@ -78,10 +78,4 @@ public function updateRecordBook (Request $request){
           return redirect('/book')->with('message','Book Delete Successfuly');
     }
 
-//on dashbord show count books
-public function countBook(){
-     $studentscount=DB::table('books')->count();
-     return view('admin.dashboard',compact('studentscount'));
-}
-
 }
