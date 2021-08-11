@@ -1,25 +1,5 @@
-@extends('admin.master');c
-@section('content');
-<div class="content-page">
-    <style>
-    .form-control {
-        border-color: black;
-    }
 
-    .title {
-        text-align: center;
-        color: blue;
-        font-weight: bold;
-    }
-
-    label {
-        color: blue;
-        font-weight: bold;
-        font-size: 16px;
-    }
-    </style>
-    <div class="container" style="margin-top: 2%;">
-        <form action="{{url('/issue-book')}}" method="POST">
+         <form action="{{url('return-book-data')}}" method="POST">
             @csrf
             <div class="modal-body">
                 @if(count($errors)>0)
@@ -32,42 +12,41 @@
                     <strong>{{session('success')}}</strong>
                 </div>
                 @endif
-                <h1 class="title">Issue Book</h1>
+                <h1 class="title">Retrun Book</h1>
                 <div class="form-group">
                     <label for="issuedBy_Id">Select Student:</label>
                     <select class="form-control" id="issuedBy_Id" name="issuedBy_Id">
                         @foreach($students as $student)
-                        <option value="{{$student->id}}">{{$student->name}}</option>
+                        <option value="{{$student->id}}"@if($student->id == $bookissue->issuedBy_Id) selected @endif>{{$student->name}}</option>
                         @endforeach
-
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="book_Id">Select Book:</label>
                     <select class="form-control" id="book_Id" name="book_Id">
                         @foreach($books as $book)
-                        <option value="{{$book->id}}">{{$book->title}}</option>
+                        <option value="{{$book->id}} "@if($book->id == $bookissue->book_Id) selected @endif">{{$book->title}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="issues_date">Issue Date</label>
-                    <input type="date" class="form-control" id="issues_date" name="issues_date">
+                    <input type="date" class="form-control" id="issues_date" name="issues_date" value="{{$bookissue->issues_date}}" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="return_date">Return Date</label>
-                    <input type="date" class="form-control" id="return_date" name="return_date">
+                    <label for="return_date">Due Date</label>
+                    <input type="date" class="form-control" id="return_date" name="return_date" value="{{$bookissue->return_date}}" readonly>
                 </div>
+                 <div class="form-group">
+                    <label for="return_on">Returned On</label>
+                    <input type="date" class="form-control" id="return_on" name="return_on">
+                </div>
+
                 <div class="form-group">
-                    <label for="staffDetail">Staff Detail</label>
-                    <textarea class="form-control" id="staffDetail" name="staff_detail" rows="3"></textarea>
+                    <label for="fine">Fine</label>
+                    <input type="text" class="form-control" id="fine" name="fine">
                 </div>
                 <div class="modal-footer border-top-0 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Return Book</button>
                 </div>
         </form>
-
-    <
-/div>
-</div>
-@stop

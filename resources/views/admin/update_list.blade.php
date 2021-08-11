@@ -39,7 +39,9 @@
                 </div>
                 <div class="form-group">
                     <label for="staffDetail">Staff Detail</label>
-                    <textarea class="form-control" id="staffDetail" name="staff_detail" rows="3" value="{{$issue->staff_detail}}"></textarea>
+                    <textarea class="form-control" id="staffDetail" name="staffDetail" rows="3" 
+                    value="<div style=&quot;text-align: center; font-weight: bold;&quot;></div>">{{$issue->staffDetail}}</textarea>
+
                 </div>
                 <div class="modal-footer border-top-0 d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary">Save</button>

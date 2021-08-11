@@ -1,3 +1,6 @@
+<?php
+use Carbon\Carbon;
+?>
 @extends('admin.master');
 @section('content')
         <div class="content-page">
@@ -118,9 +121,10 @@
                             <th>Id</th>
                             <th>student name</th>
                             <th>Book Name</th>
-                            <th>Issue_Date</th>
-                            <th>Return_Date</th>
-                            <th>Fines</th>
+                            <th>Issue Date</th>
+                            <th>Return Date</th>
+                            <th>Number Of Days</th>
+                            <th>Fine</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -132,7 +136,8 @@
                             <td>{{$data->books->title}}</td>
                             <td>{{$data->issues_date}}</td>
                             <td>{{$data->return_date}}</td>
-                            <td>200 pkr</td>
+                            <td>{{ date_diff(\Carbon\Carbon::now(), new \DateTime($data->return_date))->format("%m Months, %d days") }}</td>
+                            <td>{{ date_diff(\Carbon\Carbon::now(), new \DateTime($data->return_date))->format("%a")*100}}</td>
                             <td>Late</td>
                         </tr>
              @endforeach

@@ -24,8 +24,9 @@
 
                             <th>Std Name</th>
                             <th>Book Name</th>
-                            <th>Issue_Date</th>
-                            <th>Return_Date</th>
+                            <th>Issue  Date</th>
+                            <th>Return Date</th>
+                            <th>Return Book</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,12 +36,15 @@
                             <td>{{$data->id}}</td>
                             <td>@if($data->students) {{$data->students->name}} @endif()</td>
                             <td>@if($data->books) {{$data->books->title}} @endif()</td>
-                            <td>{{$data->issues_date}}</td>
+                            <td>{{$data->issues_date}}</td> 
                             <td>{{$data->return_date}}</td>
+                            <td><button type="button" class="btn btn-primary" onclick="returnBook({{$data}})">Return Book</button></td>
                             <td>
-                                <button type="button" class="btn btn-primary" onclick="Updatelist({{$data}})">Update list</button>
-                                <a href="{{url('listdelete',$data->id)}}" class="btn btn-success botton">Delete
+                                <button type="button" class="btn btn-success" onclick="Updatelist({{$data}})">Update list</button>
+                                <a href="{{url('listdelete',$data->id)}}" class="btn btn-danger botton">Delete
                                     Student</a>
+                            
+
                             </td>
                         </tr>
                         @endforeach
@@ -52,7 +56,7 @@
 </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Update list-->
 <div class="modal" id="update-list">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -73,10 +77,35 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal Retrun Book-->
+
+<div class="modal" id="return-book">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Return Book</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div id="return-book-data">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 </div>
 </div>
-<script type="text/javascript">
+<script>
 function Updatelist(data) {
     $.ajaxSetup({
         headers: {
@@ -100,10 +129,38 @@ function Updatelist(data) {
 }
 </script>
 
+<!-- return book Script for modal-->
+<script>
+function returnBook(data) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    let id = data['id'];
+    $.ajax({
+        type: 'POST',
+        url: "{{url('return-book')}}",
+        data: {
+            id: id
+        },
+        success: function(data) {
+
+            $('#return-book').modal('show');
+            $('#return-book-data').html('');
+            $('#return-book-data').append(data);
+        }
+    });
+}
+</script>
+
 <style type="text/css">
 .botton {
     margin-right: 20px;
+
 }
 
 
-</sty le>@stop
+
+</style>
+@stop

@@ -88,8 +88,9 @@ public function updateList (Request $request)
 public function updateRecordlist(Request $request)
 {
     $data=['book_Id'=>$request->book_Id,'issuedBy_Id'=>$request->issuedBy_Id,'issues_date'=>$request->issues_date,'return_date'=>$request->return_date,'staffDetail'=>$request->staffDetail];
- 
+
     $update = Book_issues::where('id',$request->id)->update($data);
+    dd($student);
     if($update){
         return redirect()->back()->with('message','Update Successfuly');
     } else {

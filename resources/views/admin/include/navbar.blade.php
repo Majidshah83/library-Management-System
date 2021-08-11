@@ -28,6 +28,9 @@
                         <a href="/issuelist" class="waves-effect"><i class="ti-book"></i> <span> Book Issue List </span></a>
                         
                     </li>
+                      <li class="issuebooklist">
+                        <a href="/return-book" class="waves-effect"><i class="ti-book"></i> <span> Return Book</span></a>
+                    </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>

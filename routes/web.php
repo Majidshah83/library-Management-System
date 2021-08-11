@@ -45,6 +45,10 @@ Route::get('/listdelete/{id}','IssuebokController@deleteissuebook');
 //dashbord data
 Route::get('dashboard','Dashbordcontroller@counts');
 
+//return book
+Route::post('return-book','RetrunBookController@retunbook');
+Route::post('return-book-data','RetrunBookController@retunBookrecord');
+
 Route::get('logout','AdminController@customLogout');
 Route::get('admin/login','AdminController@adminLogin');
 Route::post('admin-login','AdminController@customLogin');
