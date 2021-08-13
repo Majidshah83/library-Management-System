@@ -7,11 +7,7 @@
     <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/pages.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" type="text/css" />
-    .btn btn-danger{
-     margin-bottom: 30px;
-    margin-left: 80%;
-    }
-
+  
 <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>

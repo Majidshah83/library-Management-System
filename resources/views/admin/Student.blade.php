@@ -23,7 +23,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="/addbook" method="POST">
+                        <form action="{{url('addbook')}}" method="POST">
                             @csrf
                             <div class="modal-body">
                                 <div class="form-group">

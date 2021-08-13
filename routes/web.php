@@ -47,7 +47,9 @@ Route::get('dashboard','Dashbordcontroller@counts');
 
 //return book
 Route::post('return-book','RetrunBookController@retunbook');
-Route::post('return-book-data','RetrunBookController@retunBookrecord');
+Route::post('return-book-data','RetrunBookController@retunBooksave');
+Route::get('return-book-record','RetrunBookController@retunbookrecord');
+Route::get('returnbook/{id}','RetrunBookController@delteReturnBook');
 
 Route::get('logout','AdminController@customLogout');
 Route::get('admin/login','AdminController@adminLogin');

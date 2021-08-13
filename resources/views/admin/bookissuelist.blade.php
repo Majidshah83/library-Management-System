@@ -2,11 +2,11 @@
 @include('admin.include.script');
 @section('content');
 <div class="content-page">
-    <div class="container" style="margin-top:3%;">
+    <div class="container" style="margin-top:8%;">
         <!-- session insert successfuly -->
         <!-- Page-Title -->
         <div class="col-sm-12">
-            <div class="card-box table-responsive">
+            <div class="card-box table-responsive" style="padding-right: inherit;">
                 @if(count($errors)>0)
                 @foreach ($errors->all() as $errors)
                 <p class="alert alert-danger">{{$errors}}</p>
@@ -40,9 +40,9 @@
                             <td>{{$data->return_date}}</td>
                             <td><button type="button" class="btn btn-primary" onclick="returnBook({{$data}})">Return Book</button></td>
                             <td>
-                                <button type="button" class="btn btn-success" onclick="Updatelist({{$data}})">Update list</button>
+                                <button type="button" class="btn btn-success" onclick="Updatelist({{$data}})">Update book</button>
                                 <a href="{{url('listdelete',$data->id)}}" class="btn btn-danger botton">Delete
-                                    Student</a>
+                                    Issue</a>
                             
 
                             </td>

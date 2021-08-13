@@ -9,6 +9,7 @@ use App\Book;
 use App\Student;
 class RetrunBookController extends Controller
 {
+
     public function retunbook(Request $request)
     {
         
@@ -18,7 +19,7 @@ class RetrunBookController extends Controller
         return view('admin.returnbook')->with('students',$students)->with('books',$books)->with('bookissue',$bookissue);
       
     }
-    public function retunBookrecord(Request $request){
+    public function retunBooksave(Request $request){
         $data = ['issuedBy_Id' => $request->issuedBy_Id,
               'book_Id'=>$request->book_Id,
               'return_on'=>$request->return_on,
@@ -30,6 +31,16 @@ class RetrunBookController extends Controller
          return redirect()->back()->with('error','Book not Isuue Succefully');
     }
 
-
     }
+    public function retunbookrecord(){
+         $Bookissues =Return_book::with('books','students')->get();
+      return view('admin.returnBookrecord')->with('Bookissues',$Bookissues);
+    }
+
+public function delteReturnBook($id){
+       $book=Return_book::find($id);
+       $book->delete();
+       return redirect('/issuelist')->with('message','Delete Successfuly');
+}
+    
 }
