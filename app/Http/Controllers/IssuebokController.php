@@ -74,6 +74,7 @@ public function updateissuebook(Request $request, $id)
 
 public function updateList (Request $request)
 {
+
  $student=Student::all();
  $book=Book::all();
  $issue=Book_issues::where('id',$request->id)->first();
@@ -87,15 +88,15 @@ public function updateList (Request $request)
 
 public function updateRecordlist(Request $request)
 {
+    
     $data=['book_Id'=>$request->book_Id,'issuedBy_Id'=>$request->issuedBy_Id,'issues_date'=>$request->issues_date,'return_date'=>$request->return_date,'staffDetail'=>$request->staffDetail];
-
     $update = Book_issues::where('id',$request->id)->update($data);
-    dd($student);
     if($update){
         return redirect()->back()->with('message','Update Successfuly');
     } else {
         return redirect()->back()->with('error','Update not Successfuly');
     }
+
 }
 
 public function deleteissuebook($id){

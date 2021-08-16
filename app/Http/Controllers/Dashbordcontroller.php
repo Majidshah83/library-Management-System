@@ -14,7 +14,7 @@ class Dashbordcontroller extends Controller
 {
     public function counts()
     {
-        $orders = Book_issues::with('books','students')->where('return_date', '<=', date('Y-m-d').' 00:00:00')->get();
+        $orders = Book_issues::with('books','students')->where('return_date', '<=', date('Y-m-d').' 00:00:00')->where('return_on','=',null)->get();
         $student=DB::table('students')->count();
         $book=DB::table('books')->count();
         $isusesbook=DB::table('book_issues')->count();

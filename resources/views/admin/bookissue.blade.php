@@ -29,7 +29,7 @@
                 @endif
                 @if(session('message'))
                 <div class="alert alert-success">
-                    <strong>{{session('success')}}</strong>
+                    <strong>{{session('message')}}</strong>
                 </div>
                 @endif
                 <h1 class="title">Issue Book</h1>

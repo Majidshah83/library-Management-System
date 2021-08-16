@@ -1,16 +1,16 @@
 
          <form action="{{url('book-record-list')}}" method="POST">
             @csrf
+            <input type="hidden" name="id" value="{{$issue->id}}">
             <div class="modal-body">
                 @if(count($errors)>0)
                 @foreach ($errors->all() as $errors)
                 <p class="alert alert-danger">{{$errors}}</p>
                 @endforeach
                 @endif
-                @if(session('message'))
-                <div class="alert alert-success">
-                    <strong>{{session('success')}}</strong>
-                </div>
+   
+                @if(Session::has('message'))
+                   <p class="alert">{{ Session::get('message') }}</p>
                 @endif
                 <h1 class="title">Issue Book</h1>
                 <div class="form-group">

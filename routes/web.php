@@ -51,6 +51,12 @@ Route::post('return-book-data','RetrunBookController@retunBooksave');
 Route::get('return-book-record','RetrunBookController@retunbookrecord');
 Route::get('returnbook/{id}','RetrunBookController@delteReturnBook');
 
+
+
+//show Admmins
+Route::get('show-admin','UserController@showadmins');
+Route::post('add-admins','UserController@addAdmins');
+
 Route::get('logout','AdminController@customLogout');
 Route::get('admin/login','AdminController@adminLogin');
 Route::post('admin-login','AdminController@customLogin');
@@ -60,13 +66,12 @@ Route::post('/addbook','StudentController@addstudent');
 
 
 Route::post('/studentupdate/{id}','StudentController@update');
-
-
 Route::get('/issue','IssuebokController@issuebook');
 Route::post('/issue-book','IssuebokController@saveissuebook');
 Route::get('/show','IssuebokController@bookshow');
 Route::get('/showstudent','IssuebokController@showstudent');
 Route::get('/issuelist','IssuebokController@index');
 Route::post('/listupdate/{id}','IssuebokController@updateissuebook');
+
 
 Auth::routes();

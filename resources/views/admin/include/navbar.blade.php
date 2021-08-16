@@ -32,6 +32,10 @@
                         <a href="/return-book-record" class="waves-effect"><i class="ti-book"></i> <span> Return Books</span></a>
                     </li>
 
+                   </li>
+                      <li class="issuebooklist">
+                        <a href="/show-admin" class="waves-effect"><i class="ti-user"></i> <span>Admins</span></a>
+                    </li>
 
 
 
