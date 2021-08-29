@@ -56,6 +56,7 @@ $req->validate([
    //get data books
     public function updateBook(Request $request){
         $book=Book::where('id',$request->id)->first();
+        dd($book);
        return view('admin.update_book')->with('book',$book)->render();
     }
      //updat data books

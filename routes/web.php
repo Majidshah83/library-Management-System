@@ -46,16 +46,17 @@ Route::get('/listdelete/{id}','IssuebokController@deleteissuebook');
 Route::get('dashboard','Dashbordcontroller@counts');
 
 //return book
-Route::post('return-book','RetrunBookController@retunbook');
-Route::post('return-book-data','RetrunBookController@retunBooksave');
-Route::get('return-book-record','RetrunBookController@retunbookrecord');
-Route::get('returnbook/{id}','RetrunBookController@delteReturnBook');
+Route::post('return-book','IssuebokController@returnbooks');
+Route::post('return-book-data','IssuebokController@retunBooksave');
+Route::get('return-book-record','IssuebokController@retunbookrecord');
+Route::get('returnbook/{id}','IssuebokController@delteReturnBook');
 
 
 
 //show Admmins
 Route::get('show-admin','UserController@showadmins');
 Route::post('add-admins','UserController@addAdmins');
+Route::get('delete-role/{id}}','UserController@deleterole');
 
 Route::get('logout','AdminController@customLogout');
 Route::get('admin/login','AdminController@adminLogin');

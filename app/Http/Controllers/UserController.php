@@ -20,7 +20,7 @@ public function addAdmins(Request $request)
  $request->validate([
  'name' => 'required|max:25',
  'email' => 'required|email|unique:users',
- 'password' => 'required|min:8',
+ 'password' => 'confirmed|required|min:8',
  'role'=>'required',
 
     ]);
@@ -33,6 +33,13 @@ public function addAdmins(Request $request)
    else{
        return redirect()->back()->with('message','Add not Succesfullly');
    }
+}
+public function deleterole($id)
+{
+    $user=User::find($id);
+    $user->delete();
+    return redirect('/show-admin')->with('message','Role Delete Succesfullly');
+
 }
 
 }

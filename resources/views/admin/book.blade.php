@@ -74,7 +74,7 @@
                     @endif
                     @if(session('message'))
                     <div class="alert alert-success">
-                        <strong>{{session('success')}}</strong>
+                        <strong>{{session('message')}}</strong>
                     </div>
                     @endif
                     <table id="datatable" class="table table-striped table-bordered">

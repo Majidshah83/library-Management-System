@@ -14,7 +14,7 @@
                 @endif
                 @if(session('message'))
                 <div class="alert alert-success">
-                    <strong>{{session('success')}}</strong>
+                    <strong>{{session('message')}}</strong>
                 </div>
                 @endif
                 <table id="datatable" class="table table-striped table-bordered">
@@ -24,7 +24,6 @@
                             <th>Student Name</th>
                             <th>Book Name</th>
                             <th>Return On</th>
-                            <th>Fine</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,7 +34,6 @@
                             <td>{{$data->students->name}}</td>
                             <td>{{$data->books->title}}</td>
                             <td>{{$data->return_on}}</td> 
-                            <td>{{$data->fine}}</td>   
                             <td> <a href="{{url('returnbook',$data->id)}}" class="btn btn-danger botton">Delete Return Book</a></td>                         
                         </tr>
                         @endforeach

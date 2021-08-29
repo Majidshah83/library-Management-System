@@ -1,15 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Book_issues;
 use App\Book;
 use App\Student;
+use App\Fine;
 use DB;
+
 class IssuebokController extends Controller
 {
+    //issue list
     public function index(){
-       $Book_issues = Book_issues::with('books','students')->get();
+       $Book_issues = Book_issues::with('books','students','studentfine')->get();
        return view('admin.bookissuelist')->with('Book_issues',$Book_issues);
     }
     public function issuebook()
@@ -17,6 +21,7 @@ class IssuebokController extends Controller
 
         $student = Student::all();
         $book    = Book::all();
+
         return view('admin.bookissue')->with('students',$student)->with('books' ,$book);
 
    /*   $std= DB::table('book_issues')
@@ -47,30 +52,31 @@ public function saveissuebook(Request $request)
 
 }
 
-public function updateissuebook(Request $request, $id)
-    {
-         $request->validate([
-            'issuedBy_Id'=>'required',
-            'book_Id'=>'required',
-            'issues_date'=>'required',
-            'return_date'=>'required',
-            'staffDetail'=>'required'
+// public function updateissuebook(Request $request, $id)
+//     {
+//          $request->validate([
+//             'issuedBy_Id'=>'required',
+//             'book_Id'=>'required',
+//             'issues_date'=>'required',
+//             'return_date'=>'required',
+//             'staffDetail'=>'required'
 
-        ]);
+//         ]);
 
-        $std=Book_issues::find($id);
-        $std->issuedBy_Id=$request->input('issuedBy_Id');
-        $std->book_Id=$request->input('book_Id');
-        $std->issues_date=$request->input('issues_date');
-        $std->return_date=$request->input('return_date');
-        $std->staffDetail=$request->input('staffDetail');
-        $std->save();
+//         $std=Book_issues::find($id);
+//         $std->issuedBy_Id=$request->input('issuedBy_Id');
+//         $std->book_Id=$request->input('book_Id');
+//         $std->issues_date=$request->input('issues_date');
+//         $std->return_date=$request->input('return_date');
+//         $std->staffDetail=$request->input('staffDetail');
+//         $std->save();
 
-        return redirect('/issuelist')->with('message', 'Book update Successfuly');
-    }
+//         return redirect('/issuelist')->with('message', 'Book update Successfuly');
+//     }
 
 
 
+//get data after click Update issue button
 
 public function updateList (Request $request)
 {
@@ -78,7 +84,7 @@ public function updateList (Request $request)
  $student=Student::all();
  $book=Book::all();
  $issue=Book_issues::where('id',$request->id)->first();
- // dd($student,$book,$data);
+ dd($student,$book,$issue);
  return view('admin.update_list')->with('students',$student)->with('books' ,$book)->with('issue',$issue);
   // $data=Book_issues::where('id',$request->id)->first();
   // return view('admin.update_list')->with('data',$data)->render();
@@ -106,6 +112,61 @@ public function deleteissuebook($id){
 }
 
 
+// public function returnbook(Request $request){
+//        $returnbooks = Book_issues::with('books','students','fines')->get();
+//        dd(returnbooks);
+//        return view('admin.returnbook')->with('returnbooks',$returnbooks);
+//     }
+
+//click return book button get record 
+public function returnbooks(Request $request)
+{
+    $books=Book::all();
+    $students=Student::all();
+    $fine=Fine::all();
+    $bookissue=Book_issues::where('id',$request->id)->with('books','students','studentfine')->where('return_date', '<', date('Y-m-d').' 00:00:00')->first();
+    return view('admin.returnbook')->with('bookissue',$bookissue)->with('students',$students)->with('books',$books)->with('fine',$fine);
+}
+
+// // return book record 
+//  public function retunbookrecord(){
+//       $Bookissues =Book_issues::with('books','students','studentfine')->get();
+//   return view('admin.returnBookrecord')->with('Bookissues',$Bookissues);
+//    }
 
 
+   //return books
+
+   public function retunBooksave(Request $request){
+       $data=[
+            'return_on'=>$request->return_on,
+        ];
+        $datas=[
+            'receivefine'=>$request->receivefine,
+        "fine"=>250,
+
+        ];
+      
+       $insert=Fine::create($datas);
+        $update = Book_issues::where('id',$request->id)->update($data);
+        return redirect('/issuelist')->with('message','Return Book Successfuly');
+    }
+   
+
+
+      //return book record
+     public function retunbookrecord(){
+        $Bookissues =Book_issues::with('books','students')->get();
+      return view('admin.returnBookrecord')->with('Bookissues',$Bookissues);
+ }
+
+
+ //delete return books record
+
+ public function delteReturnBook($id){
+        $book=Book_issues::find($id);
+    $book->delete();
+   return redirect('/return-book-record')->with('message','Delete Successfuly');
+
+}
 }

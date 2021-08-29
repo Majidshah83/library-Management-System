@@ -36,8 +36,14 @@
                      </div>
                      <div class="form-group">
                         <label for="Title">Password</label>
-                        <input type="password" class="form-control" id="text1" name="password"
+                        <input type="password" class="form-control" id="myInput" name="password"
                            aria-describedby="titleHelp" placeholder="Enter Password">
+                           <input type="checkbox" onclick="myFunction()">Show Password
+                     </div>
+                     <div class="form-group">
+                        <label for="Title">Re-type Password</label>
+                        <input type="password" class="form-control" id="mycompass" name="password"
+                           aria-describedby="titleHelp" placeholder=" Enter Re-type Password">
                      </div>
                      <div class="form-group">
                         <label for="department">Select Role</label></br>
@@ -61,9 +67,9 @@
          <p class="alert alert-danger">{{$errors}}</p>
          @endforeach
          @endif
-         @if(session('success'))
+         @if(session('message'))
          <div class="alert alert-success">
-            <strong>{{session('success')}}</strong>
+            <strong>{{session('message')}}</strong>
          </div>
          @endif
          <table id="datatable" class="table table-striped table-bordered">
@@ -72,7 +78,6 @@
                   <th>Id</th>
                   <th>Name</th>
                   <th>Email</th>
-                  <th>Password</th>
                   <th>role</th>
                   <th>Action</th>
                </tr>
@@ -83,9 +88,8 @@
                   <td>{{$data->id}}</td>
                   <td>{{$data->name}}</td>
                   <td>{{$data->email}}</td>
-                  <td>{{$data->password}}</td>
                   <td>{{$data->role}}</td>
-                  <td><a href="{{url('delete-admin',$data->id)}}" class="btn btn-danger">Delete Role</td>
+                  <td><a href="{{url('delete-role',$data->id)}}" class="btn btn-danger">Delete Role</td>
                </tr>
                @endforeach
             </tbody>
@@ -94,3 +98,15 @@
    </div>
 </div>
 @stop
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+

@@ -17,4 +17,6 @@ class Return_book extends Model
     public function students(){
         return $this->hasOne('App\Student','id','issuedBy_Id');
     }
+
+   
 }

@@ -35,6 +35,7 @@ class StudentController extends Controller
     }
 
 
+
 public function update(Request $req,$id){
     $req->validate([
    'name'=>'required',
