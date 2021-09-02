@@ -46,15 +46,19 @@
                     <label for="return_date">Return On</label>
                     <input type="date" class="form-control" id="return_on" name="return_on" value={{ $bookissue->return_on}}">
                 </div>
-                <div class="form-group">
-                <label for="issuedBy_Id">Fine:</label>
-                        @foreach($fine as $data)
-                      <input type="text" class="form-control" name="receivefine" id="id="receivefine" value=" {{date_diff(\Carbon\Carbon::now(), new \DateTime($bookissue->return_date))->format("%a")*($data->fine)}}">
-                        @endforeach
+                   <div class="form-group">
+                    <input type="hidden" class="form-control" id="fine" name="fine"  @foreach ($fines as $data) value="{{$data->fine}}"@endforeach readonly>
                 </div>
+                <div class="form-group">
+           
+                @if($bookissue->return_date<Carbon\Carbon::today()) 
+                <label for="issuedBy_Id">Fine:</label>
+                      <input type="text" class="form-control" name="receivefine" "id="receivefine" 
+                      @foreach($fines as $fine)
+                      value=" {{date_diff(\Carbon\Carbon::now(), new \DateTime($bookissue->return_date))->format("%a")*($fine->fine)}}"@endforeach>
+                        @endif
 
-       
-          
+                </div>
                 <div class="modal-footer border-top-0 d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary">Return Book</button>
                 </div>
