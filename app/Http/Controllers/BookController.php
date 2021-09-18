@@ -19,16 +19,19 @@ $req->validate([
     'price' => 'required',
     'auther'=>'required',
      'edition'=>'required',
-     'category'=>'required'
+     'category'=>'required',
+     'availableCopies'=>'required'
 
 ]);
+
        $book=new Book;
        $book->title=$req->title;
        $book->price=$req->price;
        $book->auther=$req->auther;
        $book->edition=$req->edition;
        $book->category=$req->category;
-    //    dd($book);
+       $book->availableCopies=$req->availableCopies;
+       $book->issuedCopies=0;
        $book->save();
        return redirect('/book')->with('message','Book Added Successfuly');
 

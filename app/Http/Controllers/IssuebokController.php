@@ -8,6 +8,7 @@ use App\Book;
 use App\Student;
 use App\Fine;
 use DB;
+use Auth;
 
 class IssuebokController extends Controller
 {
@@ -16,14 +17,14 @@ class IssuebokController extends Controller
        $Book_issues = Book_issues::with('books','students','fines')->get();
        return view('admin.bookissuelist')->with('Book_issues',$Book_issues);
     }
-    public function issuebook()
+    public function issuebook(Request $request)
     {
 
         $student = Student::all();
-        $book    = Book::all();
 
-        return view('admin.bookissue')->with('students',$student)->with('books' ,$book);
+        $book=Book::all();
 
+        return view('admin.bookissue')->with('students',$student)->with('book' ,$book);
    /*   $std= DB::table('book_issues')
             ->join('students','students.id', '=' ,'book_issues.issuedBy_Id')
             ->join('books','book_issues.book_Id', '=','books.id')
@@ -35,14 +36,21 @@ class IssuebokController extends Controller
 }
 public function saveissuebook(Request $request)
 {
-
-    $data = ['issuedBy_Id' => $request->issuedBy_Id,
+     $updatedata=['availableCopies'=>$request->availableCopies];
+    $data = ['issuedBy_Id'=>$request->issuedBy_Id,
               'book_Id' => $request->book_Id,
               'issues_date' =>$request->issues_date,
               'return_date' => $request->return_date,
-               'staffDetail' => $request->staff_detail];
+               'staffDetail' => $request->staff_detail,
+               
 
+           ];
+          
+     
+     // Book::find($id)->increment('issuedcopies');
+     // dd($data);
     $data = Book_issues::create($data);
+
     if($data){
          return redirect()->back()->with('message','Book Isuue Succefully');
     }else{
@@ -141,9 +149,10 @@ public function returnbooks(Request $request)
    public function retunBooksave(Request $request){
 
    $getfineid=DB::table('fines')->orderBy('id','desc')->first()->id;
-   
+
      $request->validate([
    'return_on'=>'required',
+   
     ]);
      
        $data=[
@@ -157,7 +166,7 @@ public function returnbooks(Request $request)
 
         ];
      $insert=Fine::create($datas);
-        $update = Book_issues::where('id',$request->id)->update($data);
+        $update =Book::where('id',$request->id)->update($data);
 
         return redirect('/issuelist')->with('message','Return Book Successfuly');
     }

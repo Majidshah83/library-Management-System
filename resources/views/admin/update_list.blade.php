@@ -43,6 +43,7 @@
                     value="<div style=&quot;text-align: center; font-weight: bold;&quot;></div>">{{$issue->staffDetail}}</textarea>
 
                 </div>
+                
                 <div class="modal-footer border-top-0 d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>

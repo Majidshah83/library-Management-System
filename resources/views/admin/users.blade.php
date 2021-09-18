@@ -42,7 +42,7 @@
                      </div>
                      <div class="form-group">
                         <label for="Title">Re-type Password</label>
-                        <input type="password" class="form-control" id="mycompass" name="password"
+                        <input type="password" class="form-control"  name="confirm_password"
                            aria-describedby="titleHelp" placeholder=" Enter Re-type Password">
                      </div>
                      <div class="form-group">

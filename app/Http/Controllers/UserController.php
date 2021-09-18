@@ -20,7 +20,7 @@ public function addAdmins(Request $request)
  $request->validate([
  'name' => 'required|max:25',
  'email' => 'required|email|unique:users',
- 'password' => 'confirmed|required|min:8',
+ 'password' => 'required|min:8|same:confirm_password',
  'role'=>'required',
 
     ]);

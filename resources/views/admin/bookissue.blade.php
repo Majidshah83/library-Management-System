@@ -34,6 +34,7 @@
                 @endif
                 <h1 class="title">Issue Book</h1>
                 <div class="form-group">
+                 
                     <label for="issuedBy_Id">Select Student:</label>
                     <select class="form-control" id="issuedBy_Id" name="issuedBy_Id">
                         @foreach($students as $student)
@@ -45,11 +46,14 @@
                 <div class="form-group">
                     <label for="book_Id">Select Book:</label>
                     <select class="form-control" id="book_Id" name="book_Id">
-                        @foreach($books as $book)
-                        <option value="{{$book->id}}">{{$book->title}}</option>
+                        @foreach($book as $book)
+                            @if($book->availableCopies > $book->issuedCopies)
+                            <option value="{{$book->id}}">{{$book->title}}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
+               
                 <div class="form-group">
                     <label for="issues_date">Issue Date</label>
                     <input type="date" class="form-control" id="issues_date" name="issues_date">
@@ -67,7 +71,6 @@
                 </div>
         </form>
 
-    <
-/div>
+    </div>
 </div>
 @stop

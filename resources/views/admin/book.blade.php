@@ -56,6 +56,11 @@
                                     <input type="text" class="form-control" id="categorybook" name="category"
                                         placeholder="Enter Category">
                                 </div>
+                                <div class="form-group">
+                                    <label for="availableCopies">Number of Copies</label>
+                                    <input type="text" class="form-control" id="availableCopies" name="availableCopies"
+                                        placeholder="Enter availableCopies">
+                                </div>
                             </div>
                             <div class="modal-footer border-top-0 d-flex justify-content-center">
                                 <button type="submit" class="btn btn-success">Submit</button>
